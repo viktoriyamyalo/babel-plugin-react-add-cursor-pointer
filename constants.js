@@ -1,7 +1,7 @@
 const PLUGIN_NAME = "babel-plugin-cursor-pointer";
 
 const ATTRIBUTE_IDENTIFIERS = {
-  CLICK: "onClick", DATA: `data-${PLUGIN_NAME}/clickable`, DISABLED: "disabled"
+  CLICK: "onClick", DATA: `data-${PLUGIN_NAME}__is-clickable`, DISABLED: "disabled"
 };
 
 const CSS_FILE_NAME = "index.css";
