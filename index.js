@@ -1,7 +1,5 @@
 "use strict";
 
-const fs = require("fs");
-
 const {
   ATTRIBUTE_IDENTIFIERS, CSS_FILE_PATH, PLUGIN_NAME
 } = require("./constants");
@@ -66,13 +64,9 @@ module.exports = function({ types: t }) {
     name: PLUGIN_NAME,
     visitor: {
       Program(path) {
-        if (fs.existsSync(CSS_FILE_PATH)) {
-          // checking that the import string has been generated correctly to avoid breaking
-          // code with an invalid import
-          const cssImportDeclaration = t.importDeclaration([], t.stringLiteral(CSS_FILE_PATH));
+        const cssImportDeclaration = t.importDeclaration([], t.stringLiteral(CSS_FILE_PATH));
 
-          path.unshiftContainer("body", cssImportDeclaration);
-        }
+        path.unshiftContainer("body", cssImportDeclaration);
       },
       JSXOpeningElement({ node }) {
 
