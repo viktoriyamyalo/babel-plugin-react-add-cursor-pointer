@@ -1,0 +1,13 @@
+{
+  "name": "babel-plugin-cursor-pointer",
+  "version": "1.0.0",
+  "description": "A babel plugin that styles any JSX element that has an onClick prop with cursor: pointer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\"",
+    "lint": "eslint .",
+    "format": "prettier-eslint --write --eslint-config-path \".eslintrc.json\" --config \".prettierrc\" \"**/*.js\""
+  },
+  "author": "Viktoriia Mialo",
+  "license": "MIT"
+}
