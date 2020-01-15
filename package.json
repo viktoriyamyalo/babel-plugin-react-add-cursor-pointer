@@ -1,13 +1,42 @@
 {
   "name": "babel-plugin-cursor-pointer",
   "version": "1.0.0",
-  "description": "A babel plugin that styles any JSX element that has an onClick prop with cursor: pointer.",
-  "main": "index.js",
+  "description": "This babel plugin styles any enabled JSX element that has an onClick prop with cursor: pointer.",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"No test specified\"",
+    "build": "babel src --extensions '.ts' --out-dir lib",
+    "format": "prettier --write --config '.prettierrc', 'src/*.ts'",
     "lint": "eslint .",
-    "format": "prettier-eslint --write --eslint-config-path \".eslintrc.json\" --config \".prettierrc\" \"**/*.js\""
+    "prebuild": "",
+    "prepublish": "npm run lint && npm run build",
+    "postinstall": "npm run build",
+    "test": "echo 'No test specified'"
   },
-  "author": "Viktoriia Mialo",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viktoriyamyalo/babel-plugin-cursor-pointer.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "cursor",
+    "pointer"
+  ],
+  "author": "Viktoriia Mialo <viktoriya.myalo.lystopad@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@babel/types": "^7.8.3",
+    "@types/babel-types": "^7.0.7",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "prettier": "1.19.1"
+  }
 }

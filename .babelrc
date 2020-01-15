@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "10",
+          "node": "6"
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": []
+}
