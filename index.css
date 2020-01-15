@@ -1,3 +1,7 @@
 [data-babel-plugin-cursor-pointer__is-clickable] {
     cursor: pointer;
 }
+
+:disabled {
+    cursor: auto;
+}
