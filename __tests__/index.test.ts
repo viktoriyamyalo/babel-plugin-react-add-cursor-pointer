@@ -1,7 +1,7 @@
 import pluginTester from 'babel-plugin-tester';
 import * as path from 'path';
 
-import BabelPluginCursorPointer from '../src';
+import BabelPluginCursorPointer from '../src/index';
 
 pluginTester({
   plugin: BabelPluginCursorPointer,
