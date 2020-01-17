@@ -14,4 +14,4 @@ const ATTRIBUTE_IDENTIFIERS: IAttributeIdentifiers = {
 const CSS_FILE_NAME: string = 'index.css';
 const CSS_FILE_PATH: string = `${PLUGIN_NAME}/${CSS_FILE_NAME}`;
 
-export { PLUGIN_NAME, ATTRIBUTE_IDENTIFIERS, CSS_FILE_PATH };
+export default { PLUGIN_NAME, ATTRIBUTE_IDENTIFIERS, CSS_FILE_PATH };
