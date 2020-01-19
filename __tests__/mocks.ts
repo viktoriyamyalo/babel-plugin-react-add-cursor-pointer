@@ -129,7 +129,7 @@ const nullLiteral: NullLiteral = {
 
 // --------------------- utility methods
 
-const mockAttribute = (name) => ({ ...attribute, name: { ...attribute.name, name } });
+const mockAttribute = (name): JSXAttribute => ({ ...attribute, name: { ...attribute.name, name } });
 const mockNodeWithAttributes = (attributes: JSXAttribute[] | [] = []): JSXOpeningElement => ({
   ...node,
   attributes,

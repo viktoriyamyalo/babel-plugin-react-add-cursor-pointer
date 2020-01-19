@@ -1,14 +1,15 @@
 import {
-  JSXAttribute,
-  JSXOpeningElement,
-  isJSXIdentifier,
-  jSXAttribute,
   isArrowFunctionExpression,
   isClassMethod,
-  isFunctionExpression,
   isFunctionDeclaration,
-  isObjectMethod,
+  isFunctionExpression,
   isIdentifier,
+  isJSXIdentifier,
+  isObjectMethod,
+  JSXAttribute,
+  jSXAttribute,
+  JSXIdentifier,
+  JSXOpeningElement,
 } from 'babel-types';
 
 function addAttribute({
@@ -23,7 +24,7 @@ function addAttribute({
   attributes.push(attribute);
 }
 
-function createAttribute({ name, value }): JSXAttribute {
+function createAttribute({ name, value }: { name: JSXIdentifier; value? }): JSXAttribute {
   return jSXAttribute(name, value);
 }
 

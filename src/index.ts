@@ -1,4 +1,9 @@
-import { JSXExpressionContainer } from 'babel-types';
+import {
+  JSXExpressionContainer,
+  JSXOpeningElement,
+  JSXAttribute,
+  JSXIdentifier,
+} from 'babel-types';
 
 import Constants from './constants';
 import Utils from './utils';
@@ -6,9 +11,9 @@ import Utils from './utils';
 export default function({ types: t }) {
   // --------------------- attribute injection
 
-  function injectDataAttribute({ node }) {
-    const name = t.jsxIdentifier(Constants.ATTRIBUTE_IDENTIFIERS.DATA);
-    const dataAttribute = Utils.createAttribute({ name, value: null });
+  function injectDataAttribute({ node }: { node: JSXOpeningElement }) {
+    const name: JSXIdentifier = t.jsxIdentifier(Constants.ATTRIBUTE_IDENTIFIERS.DATA);
+    const dataAttribute: JSXAttribute = Utils.createAttribute({ name, value: null });
 
     Utils.addAttribute({ node, attribute: dataAttribute });
   }
@@ -26,8 +31,8 @@ export default function({ types: t }) {
 
         path.unshiftContainer('body', cssImportDeclaration);
       },
-      JSXOpeningElement({ node }) {
-        const hasOnClickAttribute = Utils.hasAttribute({
+      JSXOpeningElement({ node }: { node: JSXOpeningElement }) {
+        const hasOnClickAttribute: boolean = Utils.hasAttribute({
           node,
           attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
         });
@@ -36,7 +41,7 @@ export default function({ types: t }) {
           return;
         }
 
-        const onClickAttribute = Utils.getAttribute({
+        const onClickAttribute: JSXAttribute = Utils.getAttribute({
           node,
           attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
         });
@@ -44,7 +49,7 @@ export default function({ types: t }) {
           ? (onClickAttribute.value as JSXExpressionContainer).expression
           : onClickAttribute.value;
 
-        const isOnClickFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+        const isOnClickFunctionOrIdentifier: boolean = Utils.isFunctionOrIdentifier(value);
 
         if (!isOnClickFunctionOrIdentifier) {
           return;
