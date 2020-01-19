@@ -1,8 +1,8 @@
 import {
-  JSXExpressionContainer,
-  JSXOpeningElement,
   JSXAttribute,
+  JSXExpressionContainer,
   JSXIdentifier,
+  JSXOpeningElement,
 } from 'babel-types';
 
 import Constants from './constants';
