@@ -16,7 +16,7 @@ This plugin will style all of your enabled clickable elements with `cursor: poin
 
 Install the plugin:
 
-```$ npm i https://github.com/viktoriyamyalo/babel-plugin-cursor-pointer.git```
+```$ npm i https://github.com/viktoriyamyalo/babel-plugin-react-add-cursor-pointer.git```
 
 ### Usage
 
