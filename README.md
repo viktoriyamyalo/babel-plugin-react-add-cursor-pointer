@@ -24,7 +24,7 @@ Install the plugin:
 
 Add `"babel-plugin-react-add-cursor-pointer"` to `"plugins"` in your `.babelrc`:
 
-```"plugins": ["babel-plugin-react-add-cursor-pointer"]```
+```"plugins": ["react-add-cursor-pointer"]```
 
 ### via package.json
 
@@ -33,7 +33,7 @@ Add `"babel-plugin-react-add-cursor-pointer"` to `"babel": { "plugins": [] }` in
 ```$xslt
  "babel": {
     "plugins": [
-        "babel-plugin-react-add-cursor-pointer"
+        "react-add-cursor-pointer"
         ]
     }
 ```
