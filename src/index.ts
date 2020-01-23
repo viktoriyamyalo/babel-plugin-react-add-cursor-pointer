@@ -5,51 +5,49 @@ import {
   JSXOpeningElement,
 } from 'babel-types';
 
-import Constants from './constants';
-import Utils from './utils';
+import constants from './constants';
+import utils from './utils';
 
-export default function({ types: t }) {
+export default function ({ types: t }) {
   // --------------------- attribute injection
 
   function injectDataAttribute({ node }: { node: JSXOpeningElement }) {
-    const name: JSXIdentifier = t.jsxIdentifier(Constants.ATTRIBUTE_IDENTIFIERS.DATA);
-    const dataAttribute: JSXAttribute = Utils.createAttribute({ name, value: null });
+    const name: JSXIdentifier = t.jsxIdentifier(constants.ATTRIBUTE_IDENTIFIERS.DATA);
+    const dataAttribute: JSXAttribute = utils.AttributeHandler.createAttribute({ name, value: null });
 
-    Utils.addAttribute({ node, attribute: dataAttribute });
+    utils.AttributeHandler.addAttribute({ node, attribute: dataAttribute });
   }
 
   // --------------------- visitor
 
   return {
-    name: Constants.PLUGIN_NAME,
+    name: constants.PLUGIN_NAME,
     visitor: {
       Program(path) {
         const cssImportDeclaration = t.importDeclaration(
           [],
-          t.stringLiteral(Constants.CSS_FILE_PATH),
+          t.stringLiteral(constants.CSS_FILE_PATH),
         );
 
         path.unshiftContainer('body', cssImportDeclaration);
       },
       JSXOpeningElement({ node }: { node: JSXOpeningElement }) {
-        const hasOnClickAttribute: boolean = Utils.hasAttribute({
+        const onClickAttribute: JSXAttribute = utils.AttributeHandler.getAttribute({
           node,
-          attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
+          attributeName: constants.ATTRIBUTE_IDENTIFIERS.CLICK,
         });
+
+        const hasOnClickAttribute: boolean = !!onClickAttribute;
 
         if (!hasOnClickAttribute) {
           return;
         }
 
-        const onClickAttribute: JSXAttribute = Utils.getAttribute({
-          node,
-          attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
-        });
-        const value = t.isJSXExpressionContainer(onClickAttribute.value)
+        const onClickAttributeValue = t.isJSXExpressionContainer(onClickAttribute.value)
           ? (onClickAttribute.value as JSXExpressionContainer).expression
           : onClickAttribute.value;
 
-        const isOnClickFunctionOrIdentifier: boolean = Utils.isFunctionOrIdentifier(value);
+        const isOnClickFunctionOrIdentifier: boolean = utils.isFunctionOrIdentifier(onClickAttributeValue);
 
         if (!isOnClickFunctionOrIdentifier) {
           return;
