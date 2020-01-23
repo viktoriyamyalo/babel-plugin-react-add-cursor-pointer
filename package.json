@@ -4,11 +4,13 @@
   "description": "This babel plugin styles any enabled JSX element that has an onClick prop with cursor: pointer.",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --extensions '.ts' --out-dir lib",
-    "format": "prettier --write --config '.prettierrc' 'src/**/*.ts'",
+    "build": "npm run compile-ts && npm run uglify-css",
+    "compile-ts": "babel src --extensions '.ts' --out-dir lib",
     "lint": "eslint .",
     "postinstall": "npm run build",
-    "test": "jest"
+    "prebuild": "rm -rf lib/",
+    "test": "jest",
+    "uglify-css": "uglifycss --output minified.css index.css"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,19 @@
     "babel",
     "plugin",
     "cursor",
-    "pointer"
+    "pointer",
+    "babel",
+    "plugin",
+    "babel-plugin",
+    "cursor-pointer",
+    "clickable-element",
+    "react",
+    "jsx",
+    "transform",
+    "style",
+    "stylize",
+    "decorator",
+    "decorate"
   ],
   "author": "Viktoriia Mialo <viktoriya.myalo.lystopad@gmail.com>",
   "license": "MIT",
@@ -34,12 +48,15 @@
     "@types/babel-types": "^7.0.7",
     "@types/jest": "^24.9.0",
     "@types/node": "^13.1.7",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "babel-plugin-tester": "^8.0.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
+    "husky": "^4.0.10",
     "jest": "^24.9.0",
-    "prettier": "1.19.1",
+    "lint-staged": "^10.0.1",
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
   },
@@ -48,6 +65,15 @@
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
-    "babel-types": "^6.26.0"
+    "babel-types": "^6.26.0",
+    "uglifycss": "0.0.29"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": ["eslint"]
   }
 }
