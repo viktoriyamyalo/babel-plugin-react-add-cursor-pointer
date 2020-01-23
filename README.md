@@ -1,4 +1,4 @@
-# babel-plugin-cursor-pointer
+# babel-plugin-react-add-cursor-pointer
 
 This babel plugin styles any enabled JSX element that has an `onClick` prop with `cursor: pointer`.
 
@@ -28,12 +28,12 @@ Add `"babel-plugin-react-add-cursor-pointer"` to `"plugins"` in your `.babelrc`:
 
 ### via package.json
 
-Add `"babel-plugin-cursor-pointer"` to `"babel": { "plugins": [] }` inside your package.json. It should end up looking something like the following:
+Add `"babel-plugin-react-add-cursor-pointer"` to `"babel": { "plugins": [] }` inside your package.json. It should end up looking something like the following:
 
 ```$xslt
  "babel": {
     "plugins": [
-        "babel-plugin-cursor-pointer"
+        "babel-plugin-react-add-cursor-pointer"
         ]
     }
 ```
@@ -124,4 +124,4 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ## License
 
-MIT, see [LICENSE](https://github.com/viktoriyamyalo/babel-plugin-cursor-pointer/blob/master/LICENSE) for details.
+MIT, see [LICENSE](https://github.com/viktoriyamyalo/babel-plugin-react-add-cursor-pointer/blob/master/LICENSE) for details.
