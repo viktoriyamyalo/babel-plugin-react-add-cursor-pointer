@@ -1,7 +1,10 @@
 import {
+  ArrayExpression,
   ArrowFunctionExpression,
   BlockStatement,
+  BooleanLiteral,
   ClassMethod,
+  EmptyStatement,
   FunctionDeclaration,
   FunctionExpression,
   Identifier,
@@ -10,7 +13,10 @@ import {
   JSXIdentifier,
   JSXOpeningElement,
   NullLiteral,
+  NumericLiteral,
+  ObjectExpression,
   ObjectMethod,
+  StringLiteral,
 } from 'babel-types';
 
 // --------------------- utility stubs
@@ -45,10 +51,10 @@ const body: BlockStatement = {
 const functionStub = {
   id: { ...identifier },
   body: { ...body },
-  ...locationInfo,
   generator: false,
   async: false,
   params: [],
+  ...locationInfo,
 };
 
 // --------------------- function mocks
@@ -118,12 +124,102 @@ const attributeName: JSXIdentifier = {
 const attribute: JSXAttribute = {
   type: 'JSXAttribute',
   name: { ...attributeName },
-  ...locationInfo,
   value: { ...attributeValue },
+  ...locationInfo,
+};
+
+// --------------------- literal mocks
+
+const emptyStringLiteral: StringLiteral = {
+  type: 'StringLiteral',
+  value: '',
+  ...locationInfo,
+};
+
+const falseBooleanLiteral: BooleanLiteral = {
+  type: 'BooleanLiteral',
+  value: false,
+  ...locationInfo,
+};
+
+const floatNumberLiteral: NumericLiteral = {
+  type: 'NumericLiteral',
+  value: 1.1,
+  ...locationInfo,
+};
+
+const intNumberLiteral: NumericLiteral = {
+  type: 'NumericLiteral',
+  value: 1,
+  ...locationInfo,
+};
+
+const nanNumberLiteral: NumericLiteral = {
+  type: 'NumericLiteral',
+  value: NaN,
+  ...locationInfo,
 };
 
 const nullLiteral: NullLiteral = {
   type: 'NullLiteral',
+  ...locationInfo,
+};
+
+const stringLiteral: StringLiteral = {
+  type: 'StringLiteral',
+  value: 'string',
+  ...locationInfo,
+};
+
+const trueBooleanLiteral: BooleanLiteral = {
+  type: 'BooleanLiteral',
+  value: true,
+  ...locationInfo,
+};
+
+const zeroNumberLiteral: NumericLiteral = {
+  type: 'NumericLiteral',
+  value: 0,
+  ...locationInfo,
+};
+
+// --------------------- expression mocks
+
+const arrayExpression: ArrayExpression = {
+  type: 'ArrayExpression',
+  elements: [{ ...identifier }],
+  ...locationInfo,
+};
+
+const emptyArrayExpression: ArrayExpression = {
+  type: 'ArrayExpression',
+  elements: [],
+  ...locationInfo,
+};
+
+const emptyObjectExpression: ObjectExpression = {
+  type: 'ObjectExpression',
+  properties: [],
+  ...locationInfo,
+};
+
+const objectExpression: ObjectExpression = {
+  type: 'ObjectExpression',
+  properties: [{
+    type: 'ObjectProperty',
+    key: { ...identifier },
+    computed: false,
+    value: null,
+    shorthand: false,
+    ...locationInfo,
+  }],
+  ...locationInfo,
+};
+
+// --------------------- statement mocks
+
+const emptyStatement: EmptyStatement = {
+  type: 'EmptyStatement',
   ...locationInfo,
 };
 
@@ -136,8 +232,12 @@ const mockNodeWithAttributes = (attributes: JSXAttribute[] | [] = []): JSXOpenin
 });
 
 export default {
-  attributeName,
-  attributeValue,
+  expressions: {
+    arrayExpression,
+    emptyArrayExpression,
+    objectExpression,
+    emptyObjectExpression,
+  },
   functions: {
     arrowFunctionExpression,
     classMethod,
@@ -146,7 +246,24 @@ export default {
     objectMethod,
   },
   identifier,
-  mockAttribute,
-  mockNodeWithAttributes,
-  nullLiteral,
+  jsx: {
+    attributeName,
+    attributeValue,
+    mockAttribute,
+    mockNodeWithAttributes,
+  },
+  literals: {
+    emptyStringLiteral,
+    falseBooleanLiteral,
+    floatNumberLiteral,
+    intNumberLiteral,
+    nanNumberLiteral,
+    nullLiteral,
+    stringLiteral,
+    trueBooleanLiteral,
+    zeroNumberLiteral,
+  },
+  statements: {
+    emptyStatement,
+  },
 };
