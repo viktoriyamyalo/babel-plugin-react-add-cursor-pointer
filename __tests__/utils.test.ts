@@ -1,78 +1,86 @@
-import Constants from '../src/constants';
-import Utils from '../src/utils';
+import constants from '../src/constants';
+import utils from '../src/utils';
 
 import Mocks from './mocks';
 
 describe('addAttribute function', () => {
   it('adds an attribute to node correctly', () => {
-    const node = Mocks.mockNodeWithAttributes([]);
-    const attribute = Mocks.mockAttribute({ name: Constants.ATTRIBUTE_IDENTIFIERS.CLICK });
+    const node = Mocks.jsx.mockNodeWithAttributes([]);
+    const attribute = Mocks.jsx.mockAttribute({ name: constants.ATTRIBUTE_IDENTIFIERS.CLICK });
 
-    Utils.addAttribute({ node, attribute });
+    utils.AttributeHandler.addAttribute({ node, attribute });
 
     expect(node.attributes).toEqual([attribute]);
   });
 });
 
 describe('createAttribute function', () => {
-  it('creates and returns an attribute with correct name and value', () => {
-    const name = { ...Mocks.attributeName };
-    const value = { ...Mocks.attributeValue };
+  it('returns an attribute with correct name', () => {
+    const name = { ...Mocks.jsx.attributeName };
+    const value = { ...Mocks.jsx.attributeValue };
 
-    const onClickAttribute = Utils.createAttribute({ name, value });
+    const onClickAttribute = utils.AttributeHandler.createAttribute({ name, value });
 
     expect(onClickAttribute.name).toEqual(name);
+  });
+
+  it('returns an attribute with correct value', () => {
+    const name = { ...Mocks.jsx.attributeName };
+    const value = { ...Mocks.jsx.attributeValue };
+
+    const onClickAttribute = utils.AttributeHandler.createAttribute({ name, value });
+
     expect(onClickAttribute.value).toEqual(value);
   });
 });
 
 describe('getAttribute function', () => {
   it('returns an attribute if the node has it', () => {
-    const onClickAttribute = Mocks.mockAttribute(Constants.ATTRIBUTE_IDENTIFIERS.CLICK);
-    const node = Mocks.mockNodeWithAttributes([onClickAttribute]);
+    const onClickAttribute = Mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
+    const node = Mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
 
-    const attribute = Utils.getAttribute({
+    const attribute = utils.AttributeHandler.getAttribute({
       node,
-      attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
+      attributeName: constants.ATTRIBUTE_IDENTIFIERS.CLICK,
     });
 
     expect(attribute).toEqual(onClickAttribute);
   });
 
   it('returns null if the node has no such attribute', () => {
-    const node = Mocks.mockNodeWithAttributes([]);
+    const node = Mocks.jsx.mockNodeWithAttributes([]);
 
-    const attribute = Utils.getAttribute({
+    const attribute = utils.AttributeHandler.getAttribute({
       node,
-      attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
+      attributeName: constants.ATTRIBUTE_IDENTIFIERS.CLICK,
     });
 
-    expect(attribute).toEqual(null);
+    expect(attribute).toBeNull();
   });
 });
 
 describe('hasAttribute function', () => {
   it('returns true if node has the desired attribute', () => {
-    const onClickAttribute = Mocks.mockAttribute(Constants.ATTRIBUTE_IDENTIFIERS.CLICK);
-    const node = Mocks.mockNodeWithAttributes([onClickAttribute]);
+    const onClickAttribute = Mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
+    const node = Mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
 
-    const hasOnClickAttribute = Utils.hasAttribute({
+    const hasOnClickAttribute = utils.AttributeHandler.hasAttribute({
       node,
-      attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
+      attributeName: constants.ATTRIBUTE_IDENTIFIERS.CLICK,
     });
 
-    expect(hasOnClickAttribute).toEqual(true);
+    expect(hasOnClickAttribute).toBe(true);
   });
 
   it('returns false if the node has no such attribute', () => {
-    const node = Mocks.mockNodeWithAttributes([]);
+    const node = Mocks.jsx.mockNodeWithAttributes([]);
 
-    const hasOnClickAttribute = Utils.hasAttribute({
+    const hasOnClickAttribute = utils.AttributeHandler.hasAttribute({
       node,
-      attributeName: Constants.ATTRIBUTE_IDENTIFIERS.CLICK,
+      attributeName: constants.ATTRIBUTE_IDENTIFIERS.CLICK,
     });
 
-    expect(hasOnClickAttribute).toEqual(false);
+    expect(hasOnClickAttribute).toBe(false);
   });
 });
 
@@ -80,56 +88,73 @@ describe('isFunctionOrIdentifier function', () => {
   it('returns true if the value is an arrow function expression', () => {
     const value = { ...Mocks.functions.arrowFunctionExpression };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
   it('returns true if the value is a class method', () => {
     const value = { ...Mocks.functions.classMethod };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
   it('returns true if the value is a function expression', () => {
     const value = { ...Mocks.functions.functionExpression };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
   it('returns true if the value is a function declaration', () => {
     const value = { ...Mocks.functions.functionDeclaration };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
   it('returns true if the value is an object method', () => {
     const value = { ...Mocks.functions.objectMethod };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
   it('returns true if the value is an identifier', () => {
     const value = { ...Mocks.identifier };
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(true);
+    expect(isFunctionOrIdentifier).toBe(true);
   });
 
-  it('returns false if the value is a null literal', () => {
-    const value = { ...Mocks.nullLiteral };
+  it('detects non-functions or identifiers correctly', () => {
+    const values = [
+      { ...Mocks.expressions.arrayExpression },
+      { ...Mocks.expressions.emptyArrayExpression },
+      { ...Mocks.expressions.emptyObjectExpression },
+      { ...Mocks.expressions.objectExpression },
+      { ...Mocks.literals.emptyStringLiteral },
+      { ...Mocks.literals.falseBooleanLiteral },
+      { ...Mocks.literals.floatNumberLiteral },
+      { ...Mocks.literals.intNumberLiteral },
+      { ...Mocks.literals.nanNumberLiteral },
+      { ...Mocks.literals.nullLiteral },
+      { ...Mocks.literals.stringLiteral },
+      { ...Mocks.literals.zeroNumberLiteral },
+      { ...Mocks.literals.trueBooleanLiteral },
+      { ...Mocks.statements.emptyStatement },
+    ];
 
-    const isFunctionOrIdentifier = Utils.isFunctionOrIdentifier(value);
+    Object.keys(values).forEach((value) => {
+      const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
-    expect(isFunctionOrIdentifier).toEqual(false);
+      expect(isFunctionOrIdentifier).toBe(false);
+    });
   });
 });
