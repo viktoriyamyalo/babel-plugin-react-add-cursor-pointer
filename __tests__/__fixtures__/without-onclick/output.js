@@ -1,2 +1,2 @@
-import 'babel-plugin-cursor-pointer/index.css';
-const jsx = React.createElement('button', null, 'Without onClick');
+import "babel-plugin-react-add-cursor-pointer/minified.css";
+const jsx = React.createElement("button", null, "Without onClick");

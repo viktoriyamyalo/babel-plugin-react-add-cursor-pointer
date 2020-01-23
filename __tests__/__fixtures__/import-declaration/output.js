@@ -1,2 +1,2 @@
-import 'babel-plugin-cursor-pointer/index.css';
-import './App.js';
+import "babel-plugin-react-add-cursor-pointer/minified.css";
+import "./App.js";
