@@ -1,12 +1,12 @@
 import constants from '../src/constants';
 import utils from '../src/utils';
 
-import Mocks from './mocks';
+import mocks from './mocks';
 
 describe('addAttribute function', () => {
   it('adds an attribute to node correctly', () => {
-    const node = Mocks.jsx.mockNodeWithAttributes([]);
-    const attribute = Mocks.jsx.mockAttribute({ name: constants.ATTRIBUTE_IDENTIFIERS.CLICK });
+    const node = mocks.jsx.mockNodeWithAttributes([]);
+    const attribute = mocks.jsx.mockAttribute({ name: constants.ATTRIBUTE_IDENTIFIERS.CLICK });
 
     utils.AttributeHandler.addAttribute({ node, attribute });
 
@@ -16,8 +16,8 @@ describe('addAttribute function', () => {
 
 describe('createAttribute function', () => {
   it('returns an attribute with correct name', () => {
-    const name = { ...Mocks.jsx.attributeName };
-    const value = { ...Mocks.jsx.attributeValue };
+    const name = { ...mocks.jsx.attributeName };
+    const value = { ...mocks.jsx.attributeValue };
 
     const onClickAttribute = utils.AttributeHandler.createAttribute({ name, value });
 
@@ -25,8 +25,8 @@ describe('createAttribute function', () => {
   });
 
   it('returns an attribute with correct value', () => {
-    const name = { ...Mocks.jsx.attributeName };
-    const value = { ...Mocks.jsx.attributeValue };
+    const name = { ...mocks.jsx.attributeName };
+    const value = { ...mocks.jsx.attributeValue };
 
     const onClickAttribute = utils.AttributeHandler.createAttribute({ name, value });
 
@@ -36,8 +36,8 @@ describe('createAttribute function', () => {
 
 describe('getAttribute function', () => {
   it('returns an attribute if the node has it', () => {
-    const onClickAttribute = Mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
-    const node = Mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
+    const onClickAttribute = mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
+    const node = mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
 
     const attribute = utils.AttributeHandler.getAttribute({
       node,
@@ -48,7 +48,7 @@ describe('getAttribute function', () => {
   });
 
   it('returns null if the node has no such attribute', () => {
-    const node = Mocks.jsx.mockNodeWithAttributes([]);
+    const node = mocks.jsx.mockNodeWithAttributes([]);
 
     const attribute = utils.AttributeHandler.getAttribute({
       node,
@@ -61,8 +61,8 @@ describe('getAttribute function', () => {
 
 describe('hasAttribute function', () => {
   it('returns true if node has the desired attribute', () => {
-    const onClickAttribute = Mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
-    const node = Mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
+    const onClickAttribute = mocks.jsx.mockAttribute(constants.ATTRIBUTE_IDENTIFIERS.CLICK);
+    const node = mocks.jsx.mockNodeWithAttributes([onClickAttribute]);
 
     const hasOnClickAttribute = utils.AttributeHandler.hasAttribute({
       node,
@@ -73,7 +73,7 @@ describe('hasAttribute function', () => {
   });
 
   it('returns false if the node has no such attribute', () => {
-    const node = Mocks.jsx.mockNodeWithAttributes([]);
+    const node = mocks.jsx.mockNodeWithAttributes([]);
 
     const hasOnClickAttribute = utils.AttributeHandler.hasAttribute({
       node,
@@ -86,7 +86,7 @@ describe('hasAttribute function', () => {
 
 describe('isFunctionOrIdentifier function', () => {
   it('returns true if the value is an arrow function expression', () => {
-    const value = { ...Mocks.functions.arrowFunctionExpression };
+    const value = mocks.functions.arrowFunctionExpression;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -94,7 +94,7 @@ describe('isFunctionOrIdentifier function', () => {
   });
 
   it('returns true if the value is a class method', () => {
-    const value = { ...Mocks.functions.classMethod };
+    const value = mocks.functions.classMethod;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -102,7 +102,7 @@ describe('isFunctionOrIdentifier function', () => {
   });
 
   it('returns true if the value is a function expression', () => {
-    const value = { ...Mocks.functions.functionExpression };
+    const value = mocks.functions.functionExpression;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -110,7 +110,7 @@ describe('isFunctionOrIdentifier function', () => {
   });
 
   it('returns true if the value is a function declaration', () => {
-    const value = { ...Mocks.functions.functionDeclaration };
+    const value = mocks.functions.functionDeclaration;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -118,7 +118,7 @@ describe('isFunctionOrIdentifier function', () => {
   });
 
   it('returns true if the value is an object method', () => {
-    const value = { ...Mocks.functions.objectMethod };
+    const value = mocks.functions.objectMethod;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -126,7 +126,7 @@ describe('isFunctionOrIdentifier function', () => {
   });
 
   it('returns true if the value is an identifier', () => {
-    const value = { ...Mocks.identifier };
+    const value = mocks.identifier;
 
     const isFunctionOrIdentifier = utils.isFunctionOrIdentifier(value);
 
@@ -135,20 +135,20 @@ describe('isFunctionOrIdentifier function', () => {
 
   it('detects non-functions or identifiers correctly', () => {
     const values = [
-      { ...Mocks.expressions.arrayExpression },
-      { ...Mocks.expressions.emptyArrayExpression },
-      { ...Mocks.expressions.emptyObjectExpression },
-      { ...Mocks.expressions.objectExpression },
-      { ...Mocks.literals.emptyStringLiteral },
-      { ...Mocks.literals.falseBooleanLiteral },
-      { ...Mocks.literals.floatNumberLiteral },
-      { ...Mocks.literals.intNumberLiteral },
-      { ...Mocks.literals.nanNumberLiteral },
-      { ...Mocks.literals.nullLiteral },
-      { ...Mocks.literals.stringLiteral },
-      { ...Mocks.literals.zeroNumberLiteral },
-      { ...Mocks.literals.trueBooleanLiteral },
-      { ...Mocks.statements.emptyStatement },
+      mocks.expressions.arrayExpression,
+      mocks.expressions.emptyArrayExpression,
+      mocks.expressions.emptyObjectExpression,
+      mocks.expressions.objectExpression,
+      mocks.literals.emptyStringLiteral,
+      mocks.literals.falseBooleanLiteral,
+      mocks.literals.floatNumberLiteral,
+      mocks.literals.intNumberLiteral,
+      mocks.literals.nanNumberLiteral,
+      mocks.literals.nullLiteral,
+      mocks.literals.stringLiteral,
+      mocks.literals.zeroNumberLiteral,
+      mocks.literals.trueBooleanLiteral,
+      mocks.statements.emptyStatement,
     ];
 
     Object.keys(values).forEach((value) => {
