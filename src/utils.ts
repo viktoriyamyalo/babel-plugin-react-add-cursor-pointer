@@ -12,47 +12,53 @@ import {
   JSXOpeningElement,
 } from 'babel-types';
 
-function addAttribute({
-  node,
-  attribute,
-}: {
-  node: JSXOpeningElement;
-  attribute: JSXAttribute;
-}): void {
-  const { attributes } = node;
+class AttributeHandler {
+  public static addAttribute({
+    node,
+    attribute,
+  }: {
+    node: JSXOpeningElement;
+    attribute: JSXAttribute;
+  }): void {
+    const { attributes } = node;
 
-  attributes.push(attribute);
-}
+    attributes.push(attribute);
+  }
 
-function createAttribute({ name, value }: { name: JSXIdentifier; value? }): JSXAttribute {
-  return jSXAttribute(name, value);
-}
+  public static createAttribute({
+    name,
+    value,
+  }: {
+    name: JSXIdentifier;
+    value?;
+  }): JSXAttribute {
+    return jSXAttribute(name, value);
+  }
 
-function getAttribute({
-  node,
-  attributeName,
-}: {
-  node: JSXOpeningElement;
-  attributeName: string;
-}): JSXAttribute | null {
-  return node.attributes && hasAttribute({ node, attributeName })
-    ? Array.from(node.attributes).find((attribute) =>
-        isJSXIdentifier(attribute.name, { name: attributeName }),
-      )
-    : null;
-}
+  public static hasAttribute({
+    node,
+    attributeName,
+  }: {
+    node: JSXOpeningElement;
+    attributeName: string;
+  }): boolean {
+    return (
+      node.attributes &&
+      node.attributes.some((attribute) => isJSXIdentifier(attribute.name, { name: attributeName }))
+    );
+  }
 
-function hasAttribute({
-  node,
-  attributeName,
-}: {
-  node: JSXOpeningElement;
-  attributeName: string;
-}): boolean {
-  return (
-    node.attributes &&
-    node.attributes.some((attribute) => isJSXIdentifier(attribute.name, { name: attributeName }))
-  );
+  public static getAttribute({
+    node,
+    attributeName,
+  }: {
+    node: JSXOpeningElement;
+    attributeName: string;
+  }): JSXAttribute | null {
+    return node.attributes && AttributeHandler.hasAttribute({ node, attributeName }) ?
+      Array.from(node.attributes).find((attribute) => isJSXIdentifier(attribute.name, { name: attributeName })) :
+      null;
+  }
 }
 
 function isFunctionOrIdentifier(value): boolean {
@@ -67,9 +73,6 @@ function isFunctionOrIdentifier(value): boolean {
 }
 
 export default {
-  addAttribute,
-  createAttribute,
-  getAttribute,
-  hasAttribute,
+  AttributeHandler,
   isFunctionOrIdentifier,
 };

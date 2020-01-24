@@ -1,9 +1,9 @@
-import 'babel-plugin-cursor-pointer/index.css';
+import "babel-plugin-react-add-cursor-pointer/index.min.css";
 const jsx = React.createElement(
-  'button',
+  "button",
   {
     onClick: () => {},
-    'data-babel-plugin-cursor-pointer__is-clickable': true,
+    "data-react-add-cursor-pointer__is-clickable-element": true
   },
-  'With onClick',
+  "With onClick"
 );

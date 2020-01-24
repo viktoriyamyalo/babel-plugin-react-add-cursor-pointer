@@ -1,5 +1,5 @@
 import pluginTester from 'babel-plugin-tester';
-import * as path from 'path';
+import path from 'path';
 
 import BabelPluginCursorPointer from '../src/index';
 
@@ -10,8 +10,7 @@ pluginTester({
   },
   tests: [
     {
-      title:
-        'adds a data-babel-plugin-cursor-pointer__is-clickable attribute if element has an onClick attribute',
+      title: 'adds a data-react-add-cursor-pointer__is-clickable-element attribute if element has an onClick attribute',
       fixture: path.join(__dirname, '__fixtures__/with-onclick', 'input.js'),
       outputFixture: path.join(__dirname, '__fixtures__/with-onclick', 'output.js'),
     },
