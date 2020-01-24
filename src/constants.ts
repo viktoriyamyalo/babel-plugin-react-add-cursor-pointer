@@ -13,7 +13,7 @@ const ATTRIBUTE_IDENTIFIERS: IAttributeIdentifiers = {
   DISABLED: 'disabled',
 };
 
-const CSS_FILE_NAME: string = 'minified.css';
+const CSS_FILE_NAME: string = 'index.min.css';
 const CSS_FILE_PATH: string = `${PLUGIN_NAME}/${CSS_FILE_NAME}`;
 
 export default { ATTRIBUTE_IDENTIFIERS, CSS_FILE_PATH, PLUGIN_NAME };

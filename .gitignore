@@ -1,6 +1,6 @@
 # compiled output
 /lib
-minified.css
+index.min.css
 
 # IDEs and editors
 .idea

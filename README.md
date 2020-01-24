@@ -111,7 +111,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ### Out
 
 ```$xslt
-import "babel-plugin-react-add-cursor-pointer/minified.css";
+import "babel-plugin-react-add-cursor-pointer/index.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
