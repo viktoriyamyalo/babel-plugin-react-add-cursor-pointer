@@ -10,7 +10,7 @@
     "postinstall": "npm run build",
     "prebuild": "rm -rf lib/",
     "test": "jest",
-    "uglify-css": "uglifycss --output minified.css index.css"
+    "uglify-css": "uglifycss --output index.min.css index.css"
   },
   "repository": {
     "type": "git",
@@ -72,8 +72,5 @@
     "hooks": {
       "pre-commit": "npm run test && lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.ts": ["eslint"]
   }
 }
