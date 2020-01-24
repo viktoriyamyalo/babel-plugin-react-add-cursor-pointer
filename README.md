@@ -33,7 +33,7 @@ Add `"react-add-cursor-pointer"` to `"babel": { "plugins": [] }` inside your pac
 ```$xslt
  "babel": {
     "plugins": ["react-add-cursor-pointer"]
-    }
+ }
 ```
 
 ## How does it work?
