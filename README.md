@@ -74,7 +74,7 @@ class Button extends Component {
             <button onClick={this.handleClick}>
                 I have an onClick prop
             </button>
-        )
+        );
     }
 }
 ```
@@ -90,7 +90,7 @@ class Button extends Component {
             <button onClick={this.handleClick} data-react-add-cursor-pointer__is-clickable-element>
                 I have an onClick prop
             </button>
-        )
+        );
     }
 }
 ```
