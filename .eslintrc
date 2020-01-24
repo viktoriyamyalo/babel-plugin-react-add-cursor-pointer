@@ -35,6 +35,7 @@
         "indent": ["error", 2, { "SwitchCase": 1, "flatTernaryExpressions": false }],
         "max-len": ["error", { "code": 120 }],
         "no-unused-vars": "off",
+        "operator-linebreak": ["error", "after"],
         "quotes": ["error", "single"],
         "semi": ["error", "always"]
     }

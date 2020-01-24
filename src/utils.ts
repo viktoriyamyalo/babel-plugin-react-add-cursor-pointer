@@ -43,8 +43,8 @@ class AttributeHandler {
     attributeName: string;
   }): boolean {
     return (
-      node.attributes
-      && node.attributes.some((attribute) => isJSXIdentifier(attribute.name, { name: attributeName }))
+      node.attributes &&
+      node.attributes.some((attribute) => isJSXIdentifier(attribute.name, { name: attributeName }))
     );
   }
 
@@ -55,20 +55,20 @@ class AttributeHandler {
     node: JSXOpeningElement;
     attributeName: string;
   }): JSXAttribute | null {
-    return node.attributes && AttributeHandler.hasAttribute({ node, attributeName })
-      ? Array.from(node.attributes).find((attribute) => isJSXIdentifier(attribute.name, { name: attributeName }))
-      : null;
+    return node.attributes && AttributeHandler.hasAttribute({ node, attributeName }) ?
+      Array.from(node.attributes).find((attribute) => isJSXIdentifier(attribute.name, { name: attributeName })) :
+      null;
   }
 }
 
 function isFunctionOrIdentifier(value): boolean {
   return (
-    isArrowFunctionExpression(value)
-    || isClassMethod(value)
-    || isFunctionExpression(value)
-    || isFunctionDeclaration(value)
-    || isObjectMethod(value)
-    || isIdentifier(value)
+    isArrowFunctionExpression(value) ||
+    isClassMethod(value) ||
+    isFunctionExpression(value) ||
+    isFunctionDeclaration(value) ||
+    isObjectMethod(value) ||
+    isIdentifier(value)
   );
 }
 
