@@ -37,12 +37,8 @@
   "author": "Viktoriia Mialo <viktoriya.myalo.lystopad@gmail.com>",
   "license": "MIT",
   "files": [
-    ".babelrc",
-    "index.css",
     "index.min.css",
-    "lib",
-    "src",
-    "tsconfig.json"
+    "lib"
   ],
   "devDependencies": {
     "@babel/cli": "^7.8.3",
